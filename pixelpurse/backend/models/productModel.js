@@ -37,4 +37,37 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter product category"],
   },
+  stock: {
+    type: Number,
+    required: [true, "Please enter product stock"],
+    maxLength: [5, "Product name cannot exceed 5 characters"],
+    default: 1,
+  },
+  numOfReviews: {
+    type: Number,
+    default: 0,
+  },
+  reviews: [
+    {
+      name: {
+        type: String,
+        required: [true, "Please enter product name"],
+      },
+      rating: {
+        type: Number,
+        required: [true, "Please enter product rating"],
+      },
+      comment: {
+        type: String,
+        required: [true, "Please enter product comment"],
+      },
+    },
+  ],
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  }
 });
+
+
+modules.exports = mongoose.model("Product", productSchema);
